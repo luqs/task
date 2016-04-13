@@ -60,7 +60,7 @@ public class OrderService {
 		orderExample.createCriteria()
 			.andStatEqualTo(Constant.ORDER_STATUS_PAID)
 			.andThirdpartOrderNoLike("S%");
-		List<Order> oLst = orderMapper.selectByExample(orderExample,new RowBounds(0, 50));
+		List<Order> oLst = orderMapper.selectByExample(orderExample,new RowBounds(0, 100));
 		_LOG.info("*******getHqPaidOrders*******"+oLst);
 		return oLst;
 	}
