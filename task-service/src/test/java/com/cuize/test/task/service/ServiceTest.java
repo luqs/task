@@ -6,9 +6,6 @@ package com.cuize.test.task.service;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.cuize.task.service.impl.OService;
 
 /**
  * @author xyz(Auto-generated)
@@ -19,13 +16,11 @@ public class ServiceTest extends BaseServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(ServiceTest.class);
 
-	@Autowired
-	private OService service;
 	
 	@Test
 	public void countByParams() throws Exception {
 		
-		service.activityDraw();
+		logger.info("*********");
 	}
 
 }
