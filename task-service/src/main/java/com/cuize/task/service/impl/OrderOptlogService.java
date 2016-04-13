@@ -31,7 +31,7 @@ public class OrderOptlogService {
 	 * 
 	 * @author luqingsong
 	 */
-	@Transactional(value = "order", propagation = Propagation.REQUIRES_NEW)
+	@Transactional(value = "order")
 	public void saveLog(Integer orderId,Integer optType,String optDesc,String optUser) throws Exception {
 		OrderOptlog log = new OrderOptlog();
 		log.setCreateTime(new Date());

@@ -118,13 +118,14 @@ public class OrderService {
 				.andIdEqualTo(order.getId())
 				.andVersionEqualTo(order.getVersion());
 			order.setVersion(order.getVersion()+1);
+			order.setStat(Constant.ORDER_STATUS_FINISH);
 			order.setUpdateTime(new Date());
 			orderMapper.updateByExample(order, orderExample);
 			optlogService.saveLog(order.getId(), Constant.ORDEROPT_TYPE_UPDATE, "【定时任务】同步环企订单状态【"+response.getOrder().getOrderStatus()+"】", "TimerTask");
 			_LOG.info("**********【定时任务】同步环企订单状态【"+response.getOrder().getOrderStatus()+"】");
 		}else if(!response.getResult().getStatus()){
 			optlogService.saveLog(order.getId(), Constant.ORDEROPT_TYPE_UPDATE, "【定时任务】同步环企订单状态失败【"+response.getResult().getErrormessage()+"】", "TimerTask");
-			_LOG.info("**********【定时任务】同步环企订单状态【"+response.getOrder().getOrderStatus()+"】");
+			_LOG.info("**********【定时任务】同步环企订单状态失败【"+response.getResult().getErrormessage()+"】");
 		}
 	}
 
