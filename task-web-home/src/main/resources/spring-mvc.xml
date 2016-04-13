@@ -67,4 +67,7 @@
 	<mvc:resources location="/assets/" mapping="/assets/**" />
 	<mvc:resources location="/images/" mapping="/images/**" />
 
+	<task:executor id="asyncExecutor" pool-size="10"  />  
+	<task:annotation-driven executor="asyncExecutor"/>
+	
 </beans>

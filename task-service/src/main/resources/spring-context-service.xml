@@ -19,7 +19,4 @@
 	<context:property-placeholder location="classpath*:/conf/base.properties" properties-ref="extConf" local-override="true" />
 	<util:properties id="extConf" location="file:/opt/conf/task/base.properties" ignore-resource-not-found="true"/>
 	
-	<task:executor id="asyncExecutor" pool-size="10"  />  
-	<task:annotation-driven executor="asyncExecutor"/>
-	
 </beans>

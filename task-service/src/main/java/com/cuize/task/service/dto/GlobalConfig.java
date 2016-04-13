@@ -22,7 +22,16 @@ public class GlobalConfig {
 
 	@Value("${ds.env}")
 	private String dsEnv;
+	
+	@Value("${hq.otaaccount}")
+	private String hqAccount;
 
+	@Value("${hq.otapassword}")
+	private String hqPassword;
+	
+	@Value("${hq.url.getOrder}")
+	private String hqGetOrderUrl;
+	
 	public String getAppName() {
 		return appName;
 	}
@@ -45,5 +54,17 @@ public class GlobalConfig {
 
 	public String getDsEnv() {
 		return dsEnv;
+	}
+
+	public String getHqGetOrderUrl() {
+		return hqGetOrderUrl;
+	}
+
+	public String getHqAccount() {
+		return hqAccount;
+	}
+
+	public String getHqPassword() {
+		return hqPassword;
 	}
 }
