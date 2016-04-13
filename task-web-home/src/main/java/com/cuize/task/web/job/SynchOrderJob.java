@@ -26,7 +26,7 @@ public class SynchOrderJob {
 	@Autowired 
 	private OrderService orderService;
 	
-	@Scheduled(fixedRate=10000)
+	@Scheduled(fixedRate=3000)
 	public void synchStatus() throws Exception {
 		_LOG.info("*******Timer Task SynchOrderJob.synchStatus start *******");
 		OrderExample orderExample = new OrderExample();
