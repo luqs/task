@@ -12,16 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cuize.task.dao.order.domain.Order;
 import com.cuize.task.dao.order.domain.OrderExample;
 import com.cuize.task.meta.Constant;
-import com.cuize.task.service.impl.OrderOptlogService;
 import com.cuize.task.service.impl.OrderService;
 
 @Component("synchOrder") 
 @Transactional(value="order",rollbackFor=Exception.class)
 public class SynchOrderJob {
 	private static final Logger _LOG = LoggerFactory.getLogger(SynchOrderJob.class);
-	
-	@Autowired 
-	private OrderOptlogService logService;
 	
 	@Autowired 
 	private OrderService orderService;
