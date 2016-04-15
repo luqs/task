@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cuize.task.dao.order.domain.OrderDetail;
-import com.cuize.task.dao.order.domain.OrderDetailExample;
-import com.cuize.task.meta.Constant;
 import com.cuize.task.service.impl.OrderService;
 
 @Component("synchOrder") 
@@ -22,14 +20,10 @@ public class SynchOrderJob {
 	@Autowired 
 	private OrderService orderService;
 	
-	@Scheduled(fixedRate=1800000)
-	//@Scheduled(cron="0 0 0 * * ?")
+	//@Scheduled(fixedRate=180000)
+	@Scheduled(cron="0 0 0 * * ?")
 	public void synchStatus() throws Exception {
 		_LOG.info("*******Timer Task SynchOrderJob.synchStatus start *******");
-		OrderDetailExample detailExample = new OrderDetailExample();
-		detailExample.createCriteria()
-			.andStatEqualTo(Constant.ORDER_STATUS_PAID)
-			.andThirdOrderNoLike("S%");
 		List<OrderDetail> oLst = orderService.getHqPaidOrders();
 		for(OrderDetail o:oLst){
 			orderService.synchOrderStatus(o);
