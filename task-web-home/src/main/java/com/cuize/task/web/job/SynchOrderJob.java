@@ -9,8 +9,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cuize.task.dao.order.domain.Order;
-import com.cuize.task.dao.order.domain.OrderExample;
+import com.cuize.task.dao.order.domain.OrderDetail;
+import com.cuize.task.dao.order.domain.OrderDetailExample;
 import com.cuize.task.meta.Constant;
 import com.cuize.task.service.impl.OrderService;
 
@@ -22,16 +22,16 @@ public class SynchOrderJob {
 	@Autowired 
 	private OrderService orderService;
 	
-	//@Scheduled(fixedRate=60000)
-	@Scheduled(cron="0 0 0 * * ?")
+	@Scheduled(fixedRate=1800000)
+	//@Scheduled(cron="0 0 0 * * ?")
 	public void synchStatus() throws Exception {
 		_LOG.info("*******Timer Task SynchOrderJob.synchStatus start *******");
-		OrderExample orderExample = new OrderExample();
-		orderExample.createCriteria()
+		OrderDetailExample detailExample = new OrderDetailExample();
+		detailExample.createCriteria()
 			.andStatEqualTo(Constant.ORDER_STATUS_PAID)
-			.andThirdpartOrderNoLike("S%");
-		List<Order> oLst = orderService.getHqPaidOrders();
-		for(Order o:oLst){
+			.andThirdOrderNoLike("S%");
+		List<OrderDetail> oLst = orderService.getHqPaidOrders();
+		for(OrderDetail o:oLst){
 			orderService.synchOrderStatus(o);
 		}
 		_LOG.info("*******Timer Task SynchOrderJob.synchStatus end *******");
