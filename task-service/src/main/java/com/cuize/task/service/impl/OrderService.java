@@ -55,11 +55,12 @@ public class OrderService {
 
 	public List<OrderDetail> getHqPaidOrders() throws Exception {
 		OrderDetailExample detailExample = new OrderDetailExample();
-		detailExample.createCriteria()
+		detailExample.or()
 				.andStatEqualTo(Constant.ORDER_STATUS_PAID)
 				.andThirdOrderNoLike("S%");
-		detailExample.or().andProductPacktypeEqualTo(
-				Constant.PRODUCT_PACKTYPE_HUANQI);
+		detailExample.or()
+				.andProductPacktypeEqualTo(Constant.PRODUCT_PACKTYPE_HUANQI);
+		
 		List<OrderDetail> oLst = detailMapper.selectByExample(detailExample,
 				new RowBounds(0, 100));
 		_LOG.info("*******getHqPaidOrders*******" + oLst);
@@ -90,14 +91,18 @@ public class OrderService {
 					HQGetOrderRes response = JSON.parseObject(resJson,
 							new TypeReference<HQGetOrderRes>() {
 							});
-					
-					if (response.getResult().getStatus() && response.getOrder().getOrderStatus().equals("已取票")) {
+					_LOG.info("**********timer task packdtl:" + resJson);
+					if (response.getResult().getStatus() && (response.getOrder().getOrderStatus().equals("已取票") || response.getOrder().getOrderStatus().equals("已取消"))) {
 						// 修改订单明细的状态
 						OrderDetailPackdtlExample updateExample = new OrderDetailPackdtlExample();
 						updateExample.createCriteria()
 								.andIdEqualTo(oPackdtl.getId())
 								.andVersionEqualTo(oPackdtl.getVersion());
-						oPackdtl.setStat(Constant.ORDER_STATUS_FINISH);
+						if(response.getOrder().getOrderStatus().equals("已取票")){
+							oPackdtl.setStat(Constant.ORDER_STATUS_FINISH);
+						}else if(response.getOrder().getOrderStatus().equals("已取消")){
+							oPackdtl.setStat(Constant.ORDER_STATUS_CANCEL);
+						}
 						oPackdtl.setVersion(orderDetail.getVersion() + 1);
 						oPackdtl.setUpdateTime(new Date());
 						packdtlMapper.updateByExampleSelective(oPackdtl, updateExample);
@@ -133,13 +138,17 @@ public class OrderService {
 					new TypeReference<HQGetOrderRes>() {
 					});
 			_LOG.info("**********timer task :" + resJson);
-			if (response.getResult().getStatus() && response.getOrder().getOrderStatus().equals("已取票")) {
+			if (response.getResult().getStatus() && (response.getOrder().getOrderStatus().equals("已取票") || response.getOrder().getOrderStatus().equals("已取消"))) {
 				// 修改订单明细的状态
 				OrderDetailExample updateExample = new OrderDetailExample();
 				updateExample.createCriteria()
 						.andIdEqualTo(orderDetail.getId())
 						.andVersionEqualTo(orderDetail.getVersion());
-				orderDetail.setStat(Constant.ORDER_STATUS_FINISH);
+				if(response.getOrder().getOrderStatus().equals("已取票")){
+					orderDetail.setStat(Constant.ORDER_STATUS_FINISH);
+				}else if(response.getOrder().getOrderStatus().equals("已取消")){
+					orderDetail.setStat(Constant.ORDER_STATUS_CANCEL);
+				}
 				orderDetail.setVersion(orderDetail.getVersion() + 1);
 				orderDetail.setUpdateTime(new Date());
 				detailMapper.updateByExampleSelective(orderDetail, updateExample);
