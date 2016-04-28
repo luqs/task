@@ -11,11 +11,18 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
-		<module>task-dao-order</module>
-		<module>task-dao-product</module>
-		<module>task-utils</module>
+		
+		
+		
 		<module>task-service</module>
 		<module>task-web-home</module>
+		
+		
+		
+		
+		<module>../commons/commons-dao-order</module>
+		<module>../commons/commons-dao-product</module>
+		<module>../commons/commons-utils</module>
 	</modules>
 
 	<properties>
@@ -367,27 +374,6 @@
 			<version>3.6.7</version>
 		</dependency>
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.cuize.task</groupId>
-				<artifactId>task-dao</artifactId>
-				<version>0.0.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.cuize.task</groupId>
-				<artifactId>task-utils</artifactId>
-				<version>0.0.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.cuize.task</groupId>
-				<artifactId>task-service</artifactId>
-				<version>0.0.1</version>
-			</dependency>
-		</dependencies>
-
-	</dependencyManagement>
 
 	<build>
 		<plugins>

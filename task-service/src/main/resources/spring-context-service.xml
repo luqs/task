@@ -16,7 +16,7 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
 	
-	<context:property-placeholder location="classpath*:/conf/base.properties" properties-ref="extConf" local-override="true" />
+	<context:property-placeholder location="classpath*:/conf/base.properties" ignore-unresolvable="true" properties-ref="extConf" local-override="true" />
 	<util:properties id="extConf" location="file:/opt/conf/task/base.properties" ignore-resource-not-found="true"/>
 	
 </beans>

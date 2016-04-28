@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cuize.task.dao.order.domain.OrderOptlog;
-import com.cuize.task.dao.order.mapper.OrderOptlogMapper;
+import com.cuize.commons.dao.order.domain.OrderOptlog;
+import com.cuize.commons.dao.order.mapper.OrderOptlogMapper;
 
 /**
  * 产品库存入库接口
@@ -18,7 +18,7 @@ import com.cuize.task.dao.order.mapper.OrderOptlogMapper;
  *
  */
 @Service
-@Transactional(value = "order", rollbackFor = Exception.class)
+@Transactional(value = "orderTransactionManager", rollbackFor = Exception.class)
 public class OrderOptlogService {
 	private static final Logger _LOG = LoggerFactory
 			.getLogger(OrderOptlogService.class);
@@ -30,7 +30,7 @@ public class OrderOptlogService {
 	 * 
 	 * @author luqingsong
 	 */
-	@Transactional(value = "order")
+	@Transactional(value = "orderTransactionManager")
 	public void saveLog(Integer orderId,Integer optType,String optDesc,String optUser) throws Exception {
 		OrderOptlog log = new OrderOptlog();
 		log.setCreateTime(new Date());

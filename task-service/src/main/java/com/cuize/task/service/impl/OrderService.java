@@ -15,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.cuize.task.dao.order.domain.OrderDetail;
-import com.cuize.task.dao.order.domain.OrderDetailExample;
-import com.cuize.task.dao.order.domain.OrderDetailPackdtl;
-import com.cuize.task.dao.order.domain.OrderDetailPackdtlExample;
-import com.cuize.task.dao.order.mapper.OrderDetailMapper;
-import com.cuize.task.dao.order.mapper.OrderDetailPackdtlMapper;
-import com.cuize.task.dao.order.mapper.OrderMapper;
-import com.cuize.task.meta.Constant;
+import com.cuize.commons.dao.order.domain.OrderDetail;
+import com.cuize.commons.dao.order.domain.OrderDetailExample;
+import com.cuize.commons.dao.order.domain.OrderDetailPackdtl;
+import com.cuize.commons.dao.order.domain.OrderDetailPackdtlExample;
+import com.cuize.commons.dao.order.mapper.OrderDetailMapper;
+import com.cuize.commons.dao.order.mapper.OrderDetailPackdtlMapper;
+import com.cuize.commons.dao.order.mapper.OrderMapper;
+import com.cuize.commons.meta.Constant;
 import com.cuize.task.service.dto.GlobalConfig;
 import com.cuize.task.service.http.response.HQGetOrderRes;
 
@@ -33,7 +33,7 @@ import com.cuize.task.service.http.response.HQGetOrderRes;
  *
  */
 @Service
-@Transactional(value = "order", rollbackFor = Exception.class)
+@Transactional(value = "orderTransactionManager", rollbackFor = Exception.class)
 public class OrderService {
 	private static final Logger _LOG = LoggerFactory
 			.getLogger(OrderService.class);

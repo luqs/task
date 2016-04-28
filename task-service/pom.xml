@@ -8,21 +8,22 @@
 	</parent>
 	<artifactId>task-service</artifactId>
 
+
 	<dependencies>
 		<dependency>
-			<groupId>com.cuize.task</groupId>
-			<artifactId>task-dao-order</artifactId>
+			<groupId>com.cuize.commons</groupId>
+			<artifactId>commons-dao-order</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.cuize.task</groupId>
-			<artifactId>task-dao-product</artifactId>
+			<groupId>com.cuize.commons</groupId>
+			<artifactId>commons-dao-product</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		 <dependency>
-			<groupId>com.cuize.task</groupId>
-			<artifactId>task-utils</artifactId>
-		</dependency> 
+		<dependency>
+			<groupId>com.cuize.commons</groupId>
+			<artifactId>commons-utils</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
-
 </project>
