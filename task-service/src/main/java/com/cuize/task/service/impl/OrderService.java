@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.fluent.Request;
-import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +60,7 @@ public class OrderService {
 		detailExample.or()
 				.andProductPacktypeEqualTo(Constant.PRODUCT_PACKTYPE_HUANQI);
 		
-		List<OrderDetail> oLst = detailMapper.selectByExample(detailExample,
-				new RowBounds(0, 100));
+		List<OrderDetail> oLst = detailMapper.selectByExample(detailExample);
 		_LOG.info("*******getHqPaidOrders*******" + oLst);
 		return oLst;
 	}
