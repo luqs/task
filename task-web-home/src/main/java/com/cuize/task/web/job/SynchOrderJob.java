@@ -18,8 +18,8 @@ public class SynchOrderJob {
 	@Autowired 
 	private OrderService orderService;
 	
-	@Scheduled(fixedRate=60000)
-//	@Scheduled(cron="0 0 0 * * ?")
+//	@Scheduled(fixedRate=60000)
+	@Scheduled(cron="0 0 0 * * ?")
 	public void synchStatus() throws Exception {
 		_LOG.info("*******Timer Task SynchOrderJob.synchStatus start *******");
 		List<OrderDetail> oLst = orderService.getHqPaidOrders();
