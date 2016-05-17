@@ -23,6 +23,7 @@
 		<module>../commons/commons-dao-order</module>
 		<module>../commons/commons-dao-product</module>
 		<module>../commons/commons-utils</module>
+		<module>../commons/commons-dao-activity</module>
 	</modules>
 
 	<properties>
