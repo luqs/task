@@ -26,7 +26,7 @@ public class ScheduleSetSalePriceJob {
 	
 	private final String minDateFormat = "yyyy-MM-dd HH:mm";
 	
-	@Scheduled(cron="0 12 19 * * ?")
+	@Scheduled(cron="0 0/30 * * * ?")
 	public void excuteJob() throws Exception {
 		_LOG.info("*******Timer Task ScheduleSetSalePriceJob.excuteJob start *******");
 		// 获取当前时间
