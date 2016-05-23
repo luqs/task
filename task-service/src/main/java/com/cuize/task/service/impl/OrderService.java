@@ -20,7 +20,6 @@ import com.cuize.commons.dao.order.domain.OrderDetailPackdtl;
 import com.cuize.commons.dao.order.domain.OrderDetailPackdtlExample;
 import com.cuize.commons.dao.order.mapper.OrderDetailMapper;
 import com.cuize.commons.dao.order.mapper.OrderDetailPackdtlMapper;
-import com.cuize.commons.dao.order.mapper.OrderMapper;
 import com.cuize.commons.meta.Constant;
 import com.cuize.task.service.dto.GlobalConfig;
 import com.cuize.task.service.http.response.HQGetOrderRes;
@@ -39,9 +38,6 @@ public class OrderService {
 
 	@Autowired
 	private GlobalConfig config;
-
-	@Autowired
-	private OrderMapper orderMapper;
 
 	@Autowired
 	private OrderDetailMapper detailMapper;

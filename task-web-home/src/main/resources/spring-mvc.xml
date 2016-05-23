@@ -14,9 +14,6 @@
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
 
-	<task:executor id="asyncExecutor" pool-size="10"  />  
-	<task:annotation-driven executor="asyncExecutor"/>
-	
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters register-defaults="false">
 			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
